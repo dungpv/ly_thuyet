@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import UserProfile from "./FormValidation/UserProfile/UserProfile";
+import DemoTheme from "./JSS_StyledComponent/Themes/DemoTheme";
+
+// import DemoJSS from "./JSS_StyledComponent/DemoJSS/DemoJSS";
+// import UserProfile from "./FormValidation/UserProfile/UserProfile";
 
 function App() {
   return (
     <div>
-      <UserProfile></UserProfile>
+      {/* <UserProfile></UserProfile> */}
+      {/* <DemoJSS></DemoJSS> */}
+      <DemoTheme></DemoTheme>
     </div>
   );
 }
