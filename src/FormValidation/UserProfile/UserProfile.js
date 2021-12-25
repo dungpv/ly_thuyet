@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Swal from "sweetalert2";
 import "./UserProfile.css";
 
 export default class UserProfile extends Component {
@@ -10,7 +11,6 @@ export default class UserProfile extends Component {
       Email: "",
       passWord: "",
       passWordConfirm: "",
-      errFirstName: "",
     },
     errors: {
       firstName: "",
@@ -19,7 +19,6 @@ export default class UserProfile extends Component {
       Email: "",
       passWord: "",
       passWordConfirm: "",
-      errFirstName: "",
     },
   };
 
@@ -76,6 +75,58 @@ export default class UserProfile extends Component {
     // }
   };
 
+  handleSubmit = (event) => {
+    // ko cho trinh duyet reload lại trang
+    event.preventDefault();
+    // xet dieu kien khi submit
+    let { values, errors } = this.state;
+    // bien xac dinh form hop le
+    let valid = true;
+    let profileContent = "";
+    let errorContent = "";
+    for (let key in values) {
+      if (values[key] === "") {
+        valid = false;
+        errorContent += `
+        <p class="text-left">
+        <b class="text-danger">${key} is invalid!</b>
+        </p>`;
+      }
+      profileContent += `
+      <p class="text-left">
+      <b>${key}:</b>
+      ${values[key]}
+      </p>`;
+    }
+
+    for (let key in errors) {
+      if (errors[key] !== "") {
+        errorContent += `
+        <p class="text-left">
+        <b class="text-danger">${key} is invalid!</b>
+        </p>`;
+        valid = false;
+      }
+    }
+
+    if (!valid) {
+      Swal.fire({
+        title: "Your Profile",
+        html: errorContent,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: "Your Profile",
+      html: profileContent,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  };
+
   render() {
     return (
       <div
@@ -87,6 +138,7 @@ export default class UserProfile extends Component {
         }}
       >
         <form
+          onSubmit={this.handleSubmit}
           style={{
             fontSize:
               'font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif',
@@ -103,7 +155,6 @@ export default class UserProfile extends Component {
                   value={this.state.values.firstName}
                   type="text"
                   name="firstName"
-                  required
                   onChange={this.handleChangeValue}
                 />
                 <span className="highlight" />
@@ -120,7 +171,6 @@ export default class UserProfile extends Component {
                   value={this.state.values.lastName}
                   type="text"
                   name="lastName"
-                  required
                   onChange={this.handleChangeValue}
                 />
                 <span className="highlight" />
@@ -139,7 +189,6 @@ export default class UserProfile extends Component {
                   value={this.state.values.userName}
                   type="text"
                   name="userName"
-                  required
                   onChange={this.handleChangeValue}
                 />
                 <span className="highlight" />
@@ -158,7 +207,6 @@ export default class UserProfile extends Component {
                   value={this.state.values.Email}
                   type="email"
                   name="Email"
-                  required
                   onChange={this.handleChangeValue}
                 />
                 <span className="highlight" />
@@ -177,7 +225,6 @@ export default class UserProfile extends Component {
                   value={this.state.values.passWord}
                   name="passWord"
                   type="password"
-                  required
                   onChange={this.handleChangeValue}
                 />
                 <span className="highlight" />
@@ -194,7 +241,6 @@ export default class UserProfile extends Component {
                   value={this.state.values.passWordConfirm}
                   name="passWordConfirm"
                   type="password"
-                  required
                   onChange={this.handleChangeValue}
                 />
                 <span className="highlight" />
