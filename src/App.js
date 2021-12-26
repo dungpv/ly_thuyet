@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import DemoTheme from "./JSS_StyledComponent/Themes/DemoTheme";
-
+import ToDoList from "./JSS_StyledComponent/BaiTapStyleComponent/ToDoList/ToDoList";
+// import DemoTheme from "./JSS_StyledComponent/Themes/DemoTheme";
 // import DemoJSS from "./JSS_StyledComponent/DemoJSS/DemoJSS";
 // import UserProfile from "./FormValidation/UserProfile/UserProfile";
 
@@ -9,7 +9,8 @@ function App() {
     <div>
       {/* <UserProfile></UserProfile> */}
       {/* <DemoJSS></DemoJSS> */}
-      <DemoTheme></DemoTheme>
+      {/* <DemoTheme></DemoTheme> */}
+      <ToDoList></ToDoList>
     </div>
   );
 }
