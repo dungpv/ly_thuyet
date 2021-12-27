@@ -21,6 +21,7 @@ import {
   changeThemeAction,
   deleteTaskAction,
   doneTaskAction,
+  editTaskAction,
 } from "../../../Redux/Actions/ToDoListActions";
 import { arrTheme } from "../../Themes/ThemeManager";
 
@@ -37,7 +38,12 @@ class ToDoList extends Component {
           <Tr key={index}>
             <Th style={{ verticalAlign: "middle" }}>{task.taskName}</Th>
             <Th className="text-right">
-              <Button className="ml-1">
+              <Button
+                className="ml-1"
+                onClick={() => {
+                  this.props.dispatch(editTaskAction(task));
+                }}
+              >
                 <i className="fa fa-edit"></i>
               </Button>
               <Button
@@ -111,6 +117,7 @@ class ToDoList extends Component {
           </Dropdown>
           <Heading3>To do list</Heading3>
           <TextField
+            value={this.props.taskEdit.taskName}
             onChange={(e) => {
               this.setState({
                 taskName: e.target.value,
@@ -159,6 +166,7 @@ const mapStateToProps = (state) => {
   return {
     themeToDoList: state.ToDoListReducer.themeToDoList,
     taskList: state.ToDoListReducer.taskList,
+    taskEdit: state.ToDoListReducer.taskEdit,
   };
 };
 

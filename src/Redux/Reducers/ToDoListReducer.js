@@ -7,6 +7,7 @@ import {
   change_theme,
   done_task,
   delete_task,
+  edit_task,
 } from "../Types/ToDoListTypes";
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
     { id: "task-5", taskName: "task 5", done: true },
     { id: "task-6", taskName: "task 6", done: false },
   ],
+  taskEdit: { id: "task-1", taskName: "task 1", done: false },
 };
 
 export default (state = initialState, action) => {
@@ -64,11 +66,20 @@ export default (state = initialState, action) => {
       return { ...state, taskList: taskListUpdate };
     }
     case delete_task: {
-      let taskListUpdate = [...state.taskList];
-      taskListUpdate = taskListUpdate.filter(
-        (task) => task.id !== action.taskId
-      );
-      return { ...state, taskList: taskListUpdate };
+      // let taskListUpdate = [...state.taskList];
+      // //Gán lại giá trị cho mang taskListUpdate = chính nó nhưng filter không có taskId đó
+      // taskListUpdate = taskListUpdate.filter(task => task.id !== action.taskId);
+
+      // return {...state,taskList:taskListUpdate}
+
+      return {
+        ...state,
+        taskList: state.taskList.filter((task) => task.id !== action.taskId),
+      };
+    }
+
+    case edit_task: {
+      return { ...state, taskEdit: action.task };
     }
     default:
       return { ...state };
