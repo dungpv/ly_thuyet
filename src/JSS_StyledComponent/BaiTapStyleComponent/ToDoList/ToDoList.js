@@ -19,6 +19,8 @@ import { connect } from "react-redux";
 import {
   addTaskAction,
   changeThemeAction,
+  deleteTaskAction,
+  doneTaskAction,
 } from "../../../Redux/Actions/ToDoListActions";
 import { arrTheme } from "../../Themes/ThemeManager";
 
@@ -38,10 +40,20 @@ class ToDoList extends Component {
               <Button className="ml-1">
                 <i className="fa fa-edit"></i>
               </Button>
-              <Button className="ml-1">
+              <Button
+                className="ml-1"
+                onClick={() => {
+                  this.props.dispatch(doneTaskAction(task.id));
+                }}
+              >
                 <i className="fa fa-check"></i>
               </Button>
-              <Button className="ml-1">
+              <Button
+                className="ml-1"
+                onClick={() => {
+                  this.props.dispatch(deleteTaskAction(task.id));
+                }}
+              >
                 <i className="fa fa-trash"></i>
               </Button>
             </Th>
@@ -64,7 +76,12 @@ class ToDoList extends Component {
           <Tr key={index}>
             <Th style={{ verticalAlign: "middle" }}>{task.taskName}</Th>
             <Th className="text-right">
-              <Button className="ml-1">
+              <Button
+                className="ml-1"
+                onClick={() => {
+                  this.props.dispatch(deleteTaskAction(task.id));
+                }}
+              >
                 <i className="fa fa-trash"></i>
               </Button>
             </Th>

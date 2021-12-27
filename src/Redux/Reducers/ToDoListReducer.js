@@ -2,7 +2,12 @@ import { ToDoListDarkTheme } from "../../JSS_StyledComponent/Themes/ToDoListDark
 import { ToDoListLightTheme } from "../../JSS_StyledComponent/Themes/ToDoListLightTheme";
 import { ToDoListPrimaryTheme } from "../../JSS_StyledComponent/Themes/ToDoListPrimaryTheme";
 import { arrTheme } from "../../JSS_StyledComponent/Themes/ThemeManager";
-import { add_task, change_theme } from "../Types/ToDoListTypes";
+import {
+  add_task,
+  change_theme,
+  done_task,
+  delete_task,
+} from "../Types/ToDoListTypes";
 
 const initialState = {
   themeToDoList: ToDoListDarkTheme,
@@ -47,6 +52,23 @@ export default (state = initialState, action) => {
       }
 
       return { ...state };
+    }
+    case done_task: {
+      let taskListUpdate = [...state.taskList];
+      let index = taskListUpdate.findIndex((task) => task.id === action.taskId);
+
+      if (index !== -1) {
+        taskListUpdate[index].done = true;
+      }
+
+      return { ...state, taskList: taskListUpdate };
+    }
+    case delete_task: {
+      let taskListUpdate = [...state.taskList];
+      taskListUpdate = taskListUpdate.filter(
+        (task) => task.id !== action.taskId
+      );
+      return { ...state, taskList: taskListUpdate };
     }
     default:
       return { ...state };
