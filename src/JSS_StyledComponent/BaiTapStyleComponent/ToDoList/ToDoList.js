@@ -16,7 +16,11 @@ import { Label, TextField, Input } from "../../ComponentsToDoList/TextField";
 import { Button } from "../../ComponentsToDoList/Button";
 import { Table, Th, Thead, Tr } from "../../ComponentsToDoList/Table";
 import { connect } from "react-redux";
-import { addTaskAction } from "../../../Redux/Actions/ToDoListActions";
+import {
+  addTaskAction,
+  changeThemeAction,
+} from "../../../Redux/Actions/ToDoListActions";
+import { arrTheme } from "../../Themes/ThemeManager";
 
 class ToDoList extends Component {
   state = {
@@ -44,6 +48,12 @@ class ToDoList extends Component {
           </Tr>
         );
       });
+  };
+
+  renderTheme = () => {
+    return arrTheme.map((theme, index) => {
+      return <option value={theme.id}>{theme.name}</option>;
+    });
   };
 
   renderTaskCompleted = () => {
@@ -74,10 +84,13 @@ class ToDoList extends Component {
     return (
       <ThemeProvider theme={this.props.themeToDoList}>
         <Container className="w-50">
-          <Dropdown>
-            <option>Dark theme</option>
-            <option>Light theme</option>
-            <option>Primary theme</option>
+          <Dropdown
+            onChange={(e) => {
+              let { value } = e.target;
+              this.props.dispatch(changeThemeAction(value));
+            }}
+          >
+            {this.renderTheme()}
           </Dropdown>
           <Heading3>To do list</Heading3>
           <TextField
