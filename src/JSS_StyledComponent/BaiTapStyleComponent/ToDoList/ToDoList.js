@@ -22,6 +22,7 @@ import {
   deleteTaskAction,
   doneTaskAction,
   editTaskAction,
+  updateTaskAction,
 } from "../../../Redux/Actions/ToDoListActions";
 import { arrTheme } from "../../Themes/ThemeManager";
 
@@ -68,12 +69,6 @@ class ToDoList extends Component {
       });
   };
 
-  renderTheme = () => {
-    return arrTheme.map((theme, index) => {
-      return <option value={theme.id}>{theme.name}</option>;
-    });
-  };
-
   renderTaskCompleted = () => {
     return this.props.taskList
       .filter((task) => task.done)
@@ -103,6 +98,38 @@ class ToDoList extends Component {
   //   });
   // }
 
+  renderTheme = () => {
+    return arrTheme.map((theme, index) => {
+      return (
+        <option key={index} value={theme.id}>
+          {theme.name}
+        </option>
+      );
+    });
+  };
+
+  //Life cycle bảng 16 nhận vào props mới được thực thi trước render
+  // componentWillReceiveProps(newProps) {
+  //   console.log("this.props", this.props);
+  //   console.log("newProps", newProps);
+  //   this.setState({
+  //     taskName: newProps.taskEdit.taskName,
+  //   });
+  // }
+
+  //Lifecycle tĩnh không truy xuất được trỏ this
+  // static getDerivedStateFromProps(newProps, currentState) {
+  //   //newProps: là props mới, props cũ là this.props (không truy xuất được)
+  //   //currentState: ứng với state hiện tại this.state
+
+  //   // hoặc trả về state mới (this.state)
+  //   let newState = { ...currentState, taskName: newProps.taskEdit.taskName };
+  //   return newState;
+
+  //   // trả về null state giữ nguyên
+  //   // return null;
+  // }
+
   render() {
     return (
       <ThemeProvider theme={this.props.themeToDoList}>
@@ -117,15 +144,21 @@ class ToDoList extends Component {
           </Dropdown>
           <Heading3>To do list</Heading3>
           <TextField
-            value={this.props.taskEdit.taskName}
+            value={this.state.taskName}
             onChange={(e) => {
-              this.setState({
-                taskName: e.target.value,
-              });
+              this.setState(
+                {
+                  taskName: e.target.value,
+                },
+                () => {
+                  console.log(this.state);
+                }
+              );
             }}
+            name="taskName"
             label="Task name"
             className="w-50"
-          ></TextField>
+          />
           <Button
             className="ml-2"
             onClick={() => {
@@ -143,7 +176,12 @@ class ToDoList extends Component {
           >
             <i className="fa fa-plus"></i> Add task
           </Button>
-          <Button className="ml-2">
+          <Button
+            className="ml-2"
+            onClick={() => {
+              this.props.dispatch(updateTaskAction(this.state.taskName));
+            }}
+          >
             <i className="fa fa-upload"></i> Update task
           </Button>
           <hr></hr>
@@ -159,6 +197,16 @@ class ToDoList extends Component {
         </Container>
       </ThemeProvider>
     );
+  }
+
+  //Đây là lifecycle trả về props cũ và state cũ của component trước khi render (lifecycle này chạy sau render)
+  componentDidUpdate(prevProps, prevState) {
+    //So sánh nếu như props trước đó (taskEdit trước mà khác taskEdit hiện tại thì mình mới setState)
+    if (prevProps.taskEdit.id !== this.props.taskEdit.id) {
+      this.setState({
+        taskName: this.props.taskEdit.taskName,
+      });
+    }
   }
 }
 

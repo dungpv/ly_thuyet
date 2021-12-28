@@ -8,6 +8,7 @@ import {
   done_task,
   delete_task,
   edit_task,
+  update_task,
 } from "../Types/ToDoListTypes";
 
 const initialState = {
@@ -80,6 +81,23 @@ export default (state = initialState, action) => {
 
     case edit_task: {
       return { ...state, taskEdit: action.task };
+    }
+    case update_task: {
+      // chinh sua lai taskName cua taskEdit
+      state.taskEdit = { ...state.taskEdit, taskName: action.taskName };
+
+      // tim trong taskList cap nhat lai taskEdit nguoi dung update
+      let taskListUpdate = [...state.taskList];
+      let index = taskListUpdate.findIndex(
+        (task) => task.id === state.taskEdit.id
+      );
+      if (index !== -1) {
+        taskListUpdate[index] = state.taskEdit;
+      }
+
+      state.taskList = taskListUpdate;
+
+      return { ...state };
     }
     default:
       return { ...state };
