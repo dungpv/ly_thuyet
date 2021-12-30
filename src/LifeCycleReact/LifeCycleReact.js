@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import ChildComponent from "./ChildComponent";
 
 export default class LifeCycleReact extends Component {
-  // cach cu react 16.0
   constructor(props) {
     super(props);
     this.state = {
       number: 1,
+      product: {
+        id: 1,
+        name: "iphonex",
+      },
     };
     console.log("contructor");
   }
 
   //Được gọi khi component này được sử dụng trên DOM (giao diện của app)
   static getDerivedStateFromProps(newProps, currentState) {
-    console.log("getDerivedStateFromProps");
+    // console.log('getDerivedStateFromProps')
     return null;
   }
 
@@ -33,25 +36,39 @@ export default class LifeCycleReact extends Component {
           className="btn btn-success"
           onClick={() => {
             this.setState({
-              number: this.state.number + 1,
+              number: this.state.number,
             });
           }}
         >
           +
         </button>
-        {this.state.number === 1 ? <ChildComponent /> : ""}
-        <ChildComponent></ChildComponent>
+
+        <button
+          className="btn btn-success"
+          onClick={() => {
+            let newProduct = { ...this.state.product };
+            newProduct.name = "iphonex123";
+
+            this.setState({
+              product: newProduct,
+            });
+          }}
+        >
+          change Name Product
+        </button>
+
+        <h3>new Product parent: {this.state.product.name}</h3>
+        <ChildComponent product={this.state.product} />
       </div>
     );
   }
-
   //Được gọi sau render và chỉ gọi 1 lần duy nhất (trạng thái mounting)
   componentDidMount() {
-    console.log("componentDidMount");
+    // console.log('componentDidMount')
   }
 
   //Lần đầu sẽ không gọi, chỉ gọi khi setState hoặc thay đổi props
   componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate");
+    // console.log('componentDidUpdate')
   }
 }

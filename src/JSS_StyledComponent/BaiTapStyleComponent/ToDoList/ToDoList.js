@@ -29,6 +29,7 @@ import { arrTheme } from "../../Themes/ThemeManager";
 class ToDoList extends Component {
   state = {
     taskName: "",
+    disabled: true,
   };
 
   renderTaskToDo = () => {
@@ -42,7 +43,14 @@ class ToDoList extends Component {
               <Button
                 className="ml-1"
                 onClick={() => {
-                  this.props.dispatch(editTaskAction(task));
+                  this.setState(
+                    {
+                      disabled: false,
+                    },
+                    () => {
+                      this.props.dispatch(editTaskAction(task));
+                    }
+                  );
                 }}
               >
                 <i className="fa fa-edit"></i>
@@ -176,14 +184,36 @@ class ToDoList extends Component {
           >
             <i className="fa fa-plus"></i> Add task
           </Button>
-          <Button
-            className="ml-2"
-            onClick={() => {
-              this.props.dispatch(updateTaskAction(this.state.taskName));
-            }}
-          >
-            <i className="fa fa-upload"></i> Update task
-          </Button>
+          {this.state.disabled ? (
+            <Button
+              disabled
+              className="ml-2"
+              onClick={() => {
+                this.props.dispatch(updateTaskAction(this.state.taskName));
+              }}
+            >
+              <i className="fa fa-upload"></i> Update task
+            </Button>
+          ) : (
+            <Button
+              className="ml-2"
+              onClick={() => {
+                let { taskName } = this.state;
+                this.setState(
+                  {
+                    disabled: true,
+                    taskName: "",
+                  },
+                  () => {
+                    this.props.dispatch(updateTaskAction(taskName));
+                  }
+                );
+              }}
+            >
+              <i className="fa fa-upload"></i> Update task
+            </Button>
+          )}
+
           <hr></hr>
           <Heading3>Task to do</Heading3>
           <Table>

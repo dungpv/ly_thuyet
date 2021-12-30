@@ -1,11 +1,29 @@
 import React, { Component } from "react";
-
+import _ from "lodash";
 export default class ChildComponent extends Component {
+  //Được gọi khi component này được sử dụng trên DOM (giao diện của app)
+  static getDerivedStateFromProps(newProps, currentState) {
+    console.log("getDerivedStateFromProps_child");
+    return null;
+  }
+
+  shouldComponentUpdate(newProps, newState) {
+    console.log("newProps", newProps);
+    console.log("this.props", this.props);
+
+    if (!_.isEqual(newProps, this.props)) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     console.log("renderChildComponent");
     return (
       <div>
-        <nav className="navbar navbar-expand-sm navbar-light bg-light">
+        <h3>new Product child: {this.props.product.name}</h3>
+
+        <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
           <a className="navbar-brand" href="#">
             Navbar
           </a>
@@ -17,9 +35,7 @@ export default class ChildComponent extends Component {
             aria-controls="collapsibleNavId"
             aria-expanded="false"
             aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
+          />
           <div className="collapse navbar-collapse" id="collapsibleNavId">
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item active">
@@ -70,6 +86,9 @@ export default class ChildComponent extends Component {
         </nav>
       </div>
     );
+  }
+  componentDidMount() {
+    console.log("componentDidMount_child");
   }
 
   componentWillUnmount() {

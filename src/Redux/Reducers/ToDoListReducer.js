@@ -21,7 +21,7 @@ const initialState = {
     { id: "task-5", taskName: "task 5", done: true },
     { id: "task-6", taskName: "task 6", done: false },
   ],
-  taskEdit: { id: "task-1", taskName: "task 1", done: false },
+  taskEdit: { id: "-1", taskName: "", done: false },
 };
 
 export default (state = initialState, action) => {
@@ -96,6 +96,7 @@ export default (state = initialState, action) => {
       }
 
       state.taskList = taskListUpdate;
+      state.taskEdit = { id: "-1", taskName: "", done: false };
 
       return { ...state };
     }
