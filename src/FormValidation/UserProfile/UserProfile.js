@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Swal from "sweetalert2";
 import "./UserProfile.css";
+import {
+  SmallButton,
+  Button,
+} from "../../JSS_StyledComponent/Components/Button";
 
 export default class UserProfile extends Component {
   state = {
@@ -260,6 +264,8 @@ export default class UserProfile extends Component {
               >
                 Submit
               </button>
+              <Button>Test</Button>
+              <SmallButton>Small button</SmallButton>
             </div>
           </div>
         </form>
