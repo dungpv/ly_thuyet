@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import DemoHookUseCallBack from "./Hooks/DemoHookUseCallBack";
+import ContextProvider from "./Hooks/Context/ContextProvider";
+import DemoUseContext from "./Hooks/DemoUseContext";
+// import DemoUseReducer from "./Hooks/DemoUseReducer";
+// import DemoUseRef from "./Hooks/DemoUseRef";
+// import DemoHookUseMemo from "./Hooks/DemoHookUseMemo";
+// import DemoHookUseCallBack from "./Hooks/DemoHookUseCallBack";
 // import DemoHookUseEffect from "./Hooks/DemoHookUseEffect";
 // import DemoHookUseState from "./Hooks/DemoHookUseState";
 // import LifeCycleReact from "./LifeCycleReact/LifeCycleReact";
@@ -10,7 +15,7 @@ import DemoHookUseCallBack from "./Hooks/DemoHookUseCallBack";
 
 function App() {
   return (
-    <div>
+    <ContextProvider>
       {/* <UserProfile></UserProfile> */}
       {/* <DemoJSS></DemoJSS> */}
       {/* <DemoTheme></DemoTheme> */}
@@ -18,8 +23,12 @@ function App() {
       {/* <LifeCycleReact></LifeCycleReact> */}
       {/* <DemoHookUseState></DemoHookUseState> */}
       {/* <DemoHookUseEffect></DemoHookUseEffect> */}
-      <DemoHookUseCallBack></DemoHookUseCallBack>
-    </div>
+      {/* <DemoHookUseCallBack></DemoHookUseCallBack> */}
+      {/* <DemoHookUseMemo></DemoHookUseMemo> */}
+      {/* <DemoUseRef></DemoUseRef> */}
+      {/* <DemoUseReducer></DemoUseReducer> */}
+      <DemoUseContext></DemoUseContext>
+    </ContextProvider>
   );
 }
 
