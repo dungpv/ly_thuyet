@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ContextProvider from "./Hooks/Context/ContextProvider";
-import DemoUseContext from "./Hooks/DemoUseContext";
+import DemoReduxApp from "./Hooks/DemoReduxApp";
+// import DemoUseContext from "./Hooks/DemoUseContext";
 // import DemoUseReducer from "./Hooks/DemoUseReducer";
 // import DemoUseRef from "./Hooks/DemoUseRef";
 // import DemoHookUseMemo from "./Hooks/DemoHookUseMemo";
@@ -27,7 +28,8 @@ function App() {
       {/* <DemoHookUseMemo></DemoHookUseMemo> */}
       {/* <DemoUseRef></DemoUseRef> */}
       {/* <DemoUseReducer></DemoUseReducer> */}
-      <DemoUseContext></DemoUseContext>
+      {/* <DemoUseContext></DemoUseContext> */}
+      <DemoReduxApp></DemoReduxApp>
     </ContextProvider>
   );
 }
