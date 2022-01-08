@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import ContextProvider from "./Hooks/Context/ContextProvider";
+import Ex6UseChain from "./Hooks/ReactSpring/Ex6UseChain";
+// import Ex5UseTransition from "./Hooks/ReactSpring/Ex5UseTransition";
+// import Ex3UseSprings from "./Hooks/ReactSpring/Ex3UseSprings";
+// import Ex4UseTrail from "./Hooks/ReactSpring/Ex4UseTrail";
 // import DemoUseSpring from "./Hooks/ReactSpring/DemoUseSpring";
-import Ex2UseSpring from "./Hooks/ReactSpring/Ex2UseSpring";
+// import Ex2UseSpring from "./Hooks/ReactSpring/Ex2UseSpring";
 // import DemoReduxApp from "./Hooks/DemoReduxApp";
 // import DemoUseContext from "./Hooks/DemoUseContext";
 // import DemoUseReducer from "./Hooks/DemoUseReducer";
@@ -33,7 +37,11 @@ function App() {
       {/* <DemoUseContext></DemoUseContext> */}
       {/* <DemoReduxApp></DemoReduxApp> */}
       {/* <DemoUseSpring></DemoUseSpring> */}
-      <Ex2UseSpring></Ex2UseSpring>
+      {/* <Ex2UseSpring></Ex2UseSpring> */}
+      {/* <Ex3UseSprings></Ex3UseSprings> */}
+      {/* <Ex4UseTrail></Ex4UseTrail> */}
+      {/* <Ex5UseTransition></Ex5UseTransition> */}
+      <Ex6UseChain></Ex6UseChain>
     </ContextProvider>
   );
 }
