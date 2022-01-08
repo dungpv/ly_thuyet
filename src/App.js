@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import BaiTapGameBauCua from "./BaiTapTongHop/BaiTapGameBauCua/BaiTapGameBauCua";
 import ContextProvider from "./Hooks/Context/ContextProvider";
-import Ex6UseChain from "./Hooks/ReactSpring/Ex6UseChain";
+// import Ex6UseChain from "./Hooks/ReactSpring/Ex6UseChain";
 // import Ex5UseTransition from "./Hooks/ReactSpring/Ex5UseTransition";
 // import Ex3UseSprings from "./Hooks/ReactSpring/Ex3UseSprings";
 // import Ex4UseTrail from "./Hooks/ReactSpring/Ex4UseTrail";
@@ -41,7 +42,8 @@ function App() {
       {/* <Ex3UseSprings></Ex3UseSprings> */}
       {/* <Ex4UseTrail></Ex4UseTrail> */}
       {/* <Ex5UseTransition></Ex5UseTransition> */}
-      <Ex6UseChain></Ex6UseChain>
+      {/* <Ex6UseChain></Ex6UseChain> */}
+      <BaiTapGameBauCua></BaiTapGameBauCua>
     </ContextProvider>
   );
 }
