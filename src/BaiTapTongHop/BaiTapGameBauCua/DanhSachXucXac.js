@@ -1,6 +1,12 @@
 import React from "react";
+import XucXac from "./XucXac";
+import { useSelector, useDispatch } from "react-redux";
 
-export default function DanhSachXucXac() {
+export default function DanhSachXucXac(props) {
+  const mangXucXac = useSelector(
+    (state) => state.BaiTapGameBauCuaReducer.mangXucXac
+  );
+
   return (
     <div className="mt-5 ml-5">
       <div
@@ -9,23 +15,20 @@ export default function DanhSachXucXac() {
       >
         <div className="row">
           <div className="col-12 text-center" style={{ marginTop: "75px" }}>
-            <img style={{ width: 50 }} src="./img/BaiTapGameBauCua/Bau.png" />
+            <XucXac xucXacItem={mangXucXac[0]}></XucXac>
           </div>
           <div className="col-6 text-right mt-5">
-            <img
-              className="mr-3"
-              style={{ width: 50 }}
-              src="./img/BaiTapGameBauCua/Bau.png"
-            />
+            <XucXac xucXacItem={mangXucXac[1]}></XucXac>
           </div>
           <div className="col-6 mt-5">
-            <img
-              className="ml-3"
-              style={{ width: 50 }}
-              src="./img/BaiTapGameBauCua/Bau.png"
-            />
+            <XucXac xucXacItem={mangXucXac[2]}></XucXac>
           </div>
         </div>
+      </div>
+      <div style={{ marginLeft: "20%", marginTop: "5%" }}>
+        <button className="btn btn-success" style={{ fontSize: "25px" }}>
+          Xốc
+        </button>
       </div>
     </div>
   );

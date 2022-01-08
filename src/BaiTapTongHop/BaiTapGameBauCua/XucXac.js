@@ -1,5 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-export default function XucXac() {
-  return <div></div>;
+export default function XucXac(props) {
+  let { xucXacItem } = props;
+
+  return (
+    <Fragment>
+      <div>
+        <div>
+          <img
+            className="ml-3"
+            style={{ width: 50 }}
+            src={xucXacItem.hinhAnh}
+          />
+        </div>
+      </div>
+    </Fragment>
+  );
 }

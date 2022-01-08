@@ -1,6 +1,11 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function DiemCuoc(props) {
+  const tongDiem = useSelector(
+    (state) => state.BaiTapGameBauCuaReducer.tongDiem
+  );
+
   return (
     <div>
       <h3
@@ -15,7 +20,8 @@ export default function DiemCuoc(props) {
           style={{ fontSize: "20px", borderRadius: "5%" }}
           className="p-3 text-white bg-danger"
         >
-          Tiền thưởng: <span className="text-warning">100$</span>
+          Tiền thưởng:{" "}
+          <span className="text-warning">{tongDiem.toLocaleString()}$</span>
         </span>
       </div>
 
