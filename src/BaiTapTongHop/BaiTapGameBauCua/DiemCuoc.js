@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function DiemCuoc(props) {
+  const dispatch = useDispatch();
   const tongDiem = useSelector(
     (state) => state.BaiTapGameBauCuaReducer.tongDiem
   );
@@ -29,6 +30,11 @@ export default function DiemCuoc(props) {
         <button
           style={{ fontSize: "15px", borderRadius: "5%", border: "none" }}
           className="p-2 text-white bg-success"
+          onClick={() => {
+            dispatch({
+              type: "CHOI_LAI",
+            });
+          }}
         >
           {" "}
           Chơi lại{" "}

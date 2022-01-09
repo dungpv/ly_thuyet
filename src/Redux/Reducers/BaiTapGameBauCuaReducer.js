@@ -49,7 +49,38 @@ export default (state = initialState, action) => {
       // Cap nhat lai mang xuc xac state.mangXucXac = mangXucXacNgauNhien
       state.mangXucXac = mangXucXacNgauNhien;
 
+      // Xu ly tang diem thuong
+      mangXucXacNgauNhien.forEach((xucXacNN, index) => {
+        const indexDSCuoc = state.danhSachCuoc.findIndex(
+          (qc) => qc.ma === xucXacNN.ma
+        );
+        if (index !== -1) {
+          state.tongDiem += state.danhSachCuoc[indexDSCuoc].diemCuoc;
+        }
+      });
+
+      // xu ly hoan tien
+      state.danhSachCuoc.forEach((qc, index) => {
+        let indexXucXacNN = mangXucXacNgauNhien.findIndex(
+          (xxnn) => xxnn.ma === qc.ma
+        );
+        if (indexXucXacNN !== -1) {
+          state.tongDiem += qc.diemCuoc;
+        }
+      });
+
+      // xu ly lam moi game
+      state.danhSachCuoc = state.danhSachCuoc.map((qc, index) => {
+        return { ...qc, diemCuoc: 0 };
+      });
+
       return { ...state };
+    }
+    case "CHOI_LAI": {
+      state.tongDiem = 1000;
+      state.danhSachCuoc = state.danhSachCuoc.map((qc, index) => {
+        return { ...qc, diemCuoc: 0 };
+      });
     }
 
     default:
