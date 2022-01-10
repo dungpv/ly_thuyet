@@ -24,9 +24,11 @@ export default (state = initialState, action) => {
         (qc) => qc.ma === action.quanCuoc.ma
       );
       if (index != -1) {
-        if (action.tangGiam && state.tongDiem > 0) {
-          danhSachCuocUpdate[index].diemCuoc += 100;
-          state.tongDiem -= 100;
+        if (action.tangGiam) {
+          if (state.tongDiem > 0) {
+            danhSachCuocUpdate[index].diemCuoc += 100;
+            state.tongDiem -= 100;
+          }
         } else {
           if (danhSachCuocUpdate[index].diemCuoc > 0) {
             danhSachCuocUpdate[index].diemCuoc -= 100;

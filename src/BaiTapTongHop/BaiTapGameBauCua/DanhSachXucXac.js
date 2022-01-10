@@ -16,7 +16,7 @@ export default function DanhSachXucXac(props) {
         style={{ width: 300, height: 300, borderRadius: 150, paddingLeft: 10 }}
       >
         <div className="row">
-          <div className="col-12 text-center" style={{ marginLeft: 75 }}>
+          <div className="col-12 text-center" style={{ marginLeft: 50 }}>
             <XucXac xucXacItem={mangXucXac[0]} />
           </div>
         </div>
